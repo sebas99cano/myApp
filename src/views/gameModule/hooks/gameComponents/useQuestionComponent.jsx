@@ -7,6 +7,7 @@ export const useQuestionComponent = () => {
     correct: false,
     incorrect: false,
   });
+  const [isVisible,setIsVisible] = useState(false)
   const data = useSelector((state) => state.GameReducer);
   const dispatch = useDispatch();
 
@@ -43,8 +44,9 @@ export const useQuestionComponent = () => {
   return {
     question,
     response,
+    isVisible,
     clearInfo,
     setResponse,
-    dispatch,
+    dispatch,setIsVisible
   };
 };

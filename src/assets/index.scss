@@ -15,6 +15,15 @@ body {
   padding-top: 15%;
 }
 
+.ant-modal {
+  text-align: center;
+}
+
+.ant-modal-confirm-confirm .ant-modal-confirm-body > .anticon {
+  color: $morado !important;
+  font-size: 50px;
+}
+
 .color-green {
   color: $verde;
 }

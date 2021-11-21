@@ -1,13 +1,32 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Form, Progress } from "antd";
+import { Form, Modal, Progress } from "antd";
 import { useQuestionComponent } from "../../hooks/gameComponents/useQuestionComponent";
 import { playerResponse } from "../../../../core/action/Actions";
+import {
+  CloseOutlined,
+  PlayCircleOutlined,
+  SettingFilled,
+} from "@ant-design/icons";
 
 const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
   const [seconds, setSeconds] = useState(0);
 
-  const { question, response, clearInfo, setResponse, dispatch } =
-    useQuestionComponent(numberIntents, setNumberIntents, seconds, setSeconds);
+  const { confirm } = Modal;
+
+  const {
+    question,
+    response,
+    isVisible,
+    clearInfo,
+    setResponse,
+    dispatch,
+    setIsVisible,
+  } = useQuestionComponent(
+    numberIntents,
+    setNumberIntents,
+    seconds,
+    setSeconds
+  );
 
   const validateQuest = (isCorrect) => {
     if (isCorrect) {
@@ -22,13 +41,15 @@ const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      logicGame();
+      if (!isVisible) {
+        logicGame();
+      }
     }, 250);
     return () => {
       clearInterval(interval);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [seconds, numberIntents]);
+  }, [seconds, numberIntents, isVisible]);
 
   const logicGame = () => {
     if (numberIntents < 11) {
@@ -37,6 +58,9 @@ const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
       } else if (seconds === 100 && !response.correct && !response.incorrect) {
         if (numberIntents < 10) {
           setNumberIntents((numberIntents) => numberIntents + 1);
+        } else {
+          setIsVisible(true);
+          showConfirm();
         }
         validateQuest(false);
       } else if (seconds === 100) {
@@ -44,12 +68,46 @@ const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
         if (numberIntents < 10) {
           setNumberIntents((numberIntents) => numberIntents + 1);
           clearInfo();
+        } else {
+          setIsVisible(true);
+          showConfirm();
         }
       } else {
         setSeconds((seconds) => seconds - 1);
       }
-    } else {
     }
+  };
+
+  const showConfirm = () => {
+    confirm({
+      className: "confirmation-class",
+      title: <h1> The game is over !! </h1>,
+      content: <h2>Do you want to play again?</h2>,
+      icon: <SettingFilled spin />,
+      okText: (
+        <span>
+          <PlayCircleOutlined /> Try again
+        </span>
+      ),
+      cancelText: (
+        <span>
+          <CloseOutlined /> Exit
+        </span>
+      ),
+      okButtonProps: {
+        className: "confirmation-button question-correct",
+      },
+      cancelButtonProps: {
+        className: "confirmation-button question-incorrect",
+      },
+      onOk() {
+        setNumberIntents(1);
+        setIsVisible(false);
+        setSeconds(0);
+        clearInfo();
+      },
+      onCancel() {},
+    });
   };
 
   return (
