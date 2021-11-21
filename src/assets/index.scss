@@ -5,7 +5,7 @@ body {
   background-image: url("../helper/images/background.png");
   background-size: cover;
   background-position: center;
-  font-family: "Comic Sans MS", monospace !important;
+  font-family: $font-primary !important;
 }
 .question-title {
   font-size: 40px !important;

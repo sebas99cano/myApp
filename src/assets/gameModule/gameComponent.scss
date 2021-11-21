@@ -2,21 +2,21 @@
   font-size: 20px !important;
   font-weight: bold !important;
   padding: 25px !important;
-  background-color: white;
+  background-color: $blanco;
   text-align: center;
   border-radius: 15px;
 }
 
 .question-correct {
-  background-color: #288128 !important;
-  color: white !important;
-  border: 2px solid #288128 !important;
+  background-color: $verde !important;
+  color: $blanco !important;
+  border: 2px solid $verde !important;
 }
 
 .question-incorrect {
-  background-color: red !important;
-  color: white !important;
-  border: 2px solid red !important;
+  background-color: $rojo !important;
+  color: $blanco !important;
+  border: 2px solid $rojo !important;
 }
 
 .question-button {
@@ -25,16 +25,16 @@
   height: 50px;
   border-radius: 10px;
   transition-duration: 0.3s;
-  color: #8026ff;
-  border: 2px solid #8026ff;
+  color: $morado;
+  border: 2px solid $morado;
   display: block;
 }
 
 .question-button:not(.disabled):hover {
-  background-color: #ffae00;
+  background-color: $amarillo;
   transition-duration: 0.3s;
-  color: white;
-  border: 2px solid #ffae00;
+  color: $blanco;
+  border: 2px solid $amarillo;
 }
 
 .profile-container {
@@ -42,7 +42,7 @@
   font-size: 20px !important;
   font-weight: bold !important;
   padding: 25px !important;
-  background-color: white;
+  background-color: $blanco;
   text-align: center;
   border-radius: 15px;
 }
