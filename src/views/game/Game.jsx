@@ -1,21 +1,22 @@
 import { Fragment, useEffect } from "react";
-import QuestionComponent from "./QuestionComponent";
+import QuestionComponent from "./components/QuestionComponent";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loadAllCountriesByRegion } from "../../core/action/Actions";
+import { Col, Row } from "antd";
 
 const Game = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     axios
-      .get("https://restcountries.com/v2/lang/es")
+      .get("https://restcountries.com/v3.1/all")
       .then((response) => {
         const data = [];
         if (response.data) {
           response.data.forEach((element) => {
             data.push({
-              name: element.name,
+              name: element.name.common,
               capital: element.capital,
               clicked: false,
             });
@@ -29,7 +30,12 @@ const Game = () => {
   }, [dispatch]);
   return (
     <Fragment>
-      <QuestionComponent />
+      <Row>
+        <Col span={8}></Col>
+        <Col span={8}>
+          <QuestionComponent />
+        </Col>
+      </Row>
     </Fragment>
   );
 };
