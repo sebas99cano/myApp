@@ -1,0 +1,50 @@
+.container-home-buttons {
+  text-align: center;
+  padding: 10px;
+}
+
+.home-button {
+  border-radius: 25px !important;
+  min-width: 250px;
+  min-height: 220px;
+  font-size: 30px !important;
+  .anticon {
+    font-size: 50px;
+  }
+}
+
+.home-login-button {
+  background-color: $morado-claro !important;
+  border-color: $morado !important;
+  color: $blanco !important;
+}
+.home-login-button:hover {
+  transition-duration: 0.3s;
+  background-color: $blanco !important;
+  border-color: $morado !important;
+  color: $morado-claro !important;
+}
+
+.home-anonimo-button {
+  background-color: $verde-claro !important;
+  border-color: $verde !important;
+  color: $blanco !important;
+}
+.home-anonimo-button:hover {
+  transition-duration: 0.3s;
+  background-color: $blanco !important;
+  border-color: $verde !important;
+  color: $verde-claro !important;
+}
+
+.home-contact-button {
+  background-color: $amarillo-claro !important;
+  border-color: $amarillo !important;
+  color: $blanco !important;
+}
+.home-contact-button:hover {
+  transition-duration: 0.3s;
+  background-color: $blanco !important;
+  border-color: $amarillo !important;
+  color: $amarillo-claro !important;
+}

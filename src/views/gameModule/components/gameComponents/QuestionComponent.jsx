@@ -10,7 +10,7 @@ import {
 import { useNavigate } from "react-router";
 
 const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
-  const [seconds, setSeconds] = useState(0);
+  const [seconds, setSeconds] = useState(-4);
 
   let navigate = useNavigate();
 

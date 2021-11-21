@@ -14,11 +14,13 @@ export const useGame = () => {
         const data = [];
         if (response.data) {
           response.data.forEach((element) => {
-            data.push({
-              name: element.name.common,
-              capital: element.capital,
-              clicked: false,
-            });
+            if (element.name.common && element.capital) {
+              data.push({
+                name: element.name.common,
+                capital: element.capital,
+                clicked: false,
+              });
+            }
           });
         }
         dispatch(loadAllCountriesByRegion(data));
