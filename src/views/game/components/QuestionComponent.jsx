@@ -3,7 +3,7 @@ import { Form, Progress } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { playerResponse } from "../../../core/action/Actions";
 
-const QuestionComponent = () => {
+const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
   const [question, setQuestion] = useState({ name: "", options: [] });
   const [response, setResponse] = useState({
     correct: false,
@@ -15,31 +15,39 @@ const QuestionComponent = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    startGame();
+    newIntent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.countries]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (seconds < 100) {
-        setSeconds((seconds) => seconds + 1);
-      } else if (seconds === 100 && !response.correct && !response.incorrect) {
-        validateQuest(false);
-      } else if (seconds === 100) {
-        setSeconds(0);
-        clearInfo();
-      } else {
-        setSeconds((seconds) => seconds - 1);
-      }
+      logicGame();
     }, 250);
     return () => {
       clearInterval(interval);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [seconds]);
+  }, [seconds, numberIntents]);
 
-  const startGame = () => {
-    newIntent();
+  const logicGame = () => {
+    if (numberIntents < 11) {
+      if (seconds < 100) {
+        setSeconds((seconds) => seconds + 1);
+      } else if (seconds === 100 && !response.correct && !response.incorrect) {
+        setNumberIntents((numberIntents) => numberIntents + 1);
+        validateQuest(false);
+      } else if (seconds === 100) {
+        setSeconds(0);
+        if (numberIntents < 10) {
+          setNumberIntents((numberIntents) => numberIntents + 1);
+          clearInfo();
+        }
+      } else {
+        setSeconds((seconds) => seconds - 1);
+      }
+    } else {
+      
+    }
   };
 
   const validateQuest = (isCorrect) => {
@@ -82,6 +90,7 @@ const QuestionComponent = () => {
     <Fragment>
       <h1 className={"question-title"}>COUNTRY QUIZ</h1>
       <Form className={"question-container"} shape={"round"}>
+        <h1>{numberIntents} of 10</h1>
         <h2>
           ¿ Which is the capital of <br />
           {question.name} ?
@@ -105,6 +114,7 @@ const QuestionComponent = () => {
             to: "#8026ff",
           }}
           strokeWidth={15}
+          trailColor={"#ae81ee"}
         />
         <br />
         <br />

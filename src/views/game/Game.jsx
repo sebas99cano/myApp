@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import QuestionComponent from "./components/QuestionComponent";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -7,6 +7,7 @@ import { Col, Row } from "antd";
 import ProfileComponent from "./components/ProfileComponent";
 
 const Game = () => {
+  const [numberIntents, setNumberIntents] = useState(8);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,6 +30,7 @@ const Game = () => {
         console.log(error);
       });
   }, [dispatch]);
+
   return (
     <Fragment>
       <Row>
@@ -36,7 +38,10 @@ const Game = () => {
           <ProfileComponent />
         </Col>
         <Col span={8}>
-          <QuestionComponent />
+          <QuestionComponent
+            numberIntents={numberIntents}
+            setNumberIntents={setNumberIntents}
+          />
         </Col>
       </Row>
     </Fragment>
