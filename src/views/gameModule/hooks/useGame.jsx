@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { loadAllCountriesByRegion } from "../../../core/action/Actions";
 
 export const useGame = () => {
-  const [numberIntents, setNumberIntents] = useState(9);
+  const [numberIntents, setNumberIntents] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -7,9 +7,12 @@ import {
   PlayCircleOutlined,
   SettingFilled,
 } from "@ant-design/icons";
+import { useNavigate } from "react-router";
 
 const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
   const [seconds, setSeconds] = useState(0);
+
+  let navigate = useNavigate();
 
   const { confirm } = Modal;
 
@@ -106,7 +109,9 @@ const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
         setSeconds(0);
         clearInfo();
       },
-      onCancel() {},
+      onCancel() {
+        navigate("/");
+      },
     });
   };
 

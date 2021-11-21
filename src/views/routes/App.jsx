@@ -1,11 +1,18 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Game from "../gameModule/components/Game";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "../layout/Home";
+import NotFoundPage from "../layout/NotFoundPage";
 
 const App = () => {
   return (
-    <Fragment>
-      <Game />
-    </Fragment>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path={"/"} element={<Home />} />
+        <Route exact path={"/game"} element={<Game />} />
+        <Route path={"*"} element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
