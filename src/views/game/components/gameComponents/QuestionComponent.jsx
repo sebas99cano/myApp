@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Form, Progress } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { playerResponse } from "../../../core/action/Actions";
+import { playerResponse } from "../../../../core/action/Actions";
 
 const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
   const [question, setQuestion] = useState({ name: "", options: [] });

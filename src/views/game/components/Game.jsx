@@ -1,13 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
-import QuestionComponent from "./components/QuestionComponent";
+import QuestionComponent from "./gameComponents/QuestionComponent";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { loadAllCountriesByRegion } from "../../core/action/Actions";
+import { loadAllCountriesByRegion } from "../../../core/action/Actions";
 import { Col, Row } from "antd";
-import ProfileComponent from "./components/ProfileComponent";
+import ProfileComponent from "./gameComponents/ProfileComponent";
 
 const Game = () => {
-  const [numberIntents, setNumberIntents] = useState(8);
+  const [numberIntents, setNumberIntents] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {

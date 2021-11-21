@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import Game from "../game/Game";
+import Game from "../game/components/Game";
 
 const App = () => {
     return (
