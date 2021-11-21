@@ -99,9 +99,8 @@ const QuestionComponent = () => {
           type="line"
           showInfo={false}
           strokeColor={{
-            "0%": "red",
-            "50%": "#ffae00",
-            "100%": "#288128",
+            from: "black",
+            to: "#8026ff",
           }}
           strokeWidth={15}
         />
