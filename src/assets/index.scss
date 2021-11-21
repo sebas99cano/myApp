@@ -1,0 +1,32 @@
+@import "./theme.scss";
+@import "./gameModule/gameComponent.scss";
+
+body {
+  background-image: url("../helper/images/background.png");
+  background-size: cover;
+  background-position: center;
+  font-family: "Comic Sans MS", monospace !important;
+}
+.question-title {
+  font-size: 40px !important;
+  font-weight: bold !important;
+  text-align: center;
+  color: $blanco;
+  padding-top: 15%;
+}
+
+.color-green {
+  color: $verde;
+}
+
+.color-red {
+  color: $rojo;
+}
+
+.color-purple {
+  color: $morado;
+}
+
+.disabled {
+  pointer-events: none;
+}

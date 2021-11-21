@@ -35,7 +35,9 @@ const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
       if (seconds < 100) {
         setSeconds((seconds) => seconds + 1);
       } else if (seconds === 100 && !response.correct && !response.incorrect) {
-        setNumberIntents((numberIntents) => numberIntents + 1);
+        if (numberIntents < 10) {
+          setNumberIntents((numberIntents) => numberIntents + 1);
+        }
         validateQuest(false);
       } else if (seconds === 100) {
         setSeconds(0);
@@ -47,7 +49,6 @@ const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
         setSeconds((seconds) => seconds - 1);
       }
     } else {
-      
     }
   };
 
