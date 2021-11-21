@@ -9,15 +9,29 @@ const QuestionComponent = () => {
     correct: false,
     incorrect: false,
   });
+  const [seconds, setSeconds] = useState(0);
 
   const data = useSelector((state) => state.GameReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
     data.countries.sort(() => Math.random() - Math.random()).find(() => true);
-    newIntent();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    startGame();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.countries]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds((seconds) => seconds + 1);
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const startGame = () => {
+    newIntent()
+  };
 
   const validateQuest = (isCorrect) => {
     if (isCorrect) {
@@ -60,6 +74,7 @@ const QuestionComponent = () => {
         <Col span={8}>
           <h1 className={"question-title"}>COUNTRY QUIZ</h1>
           <Form className={"question-container"} shape={"round"}>
+            <h1>Segundos: {seconds}</h1>
             <h2>Cual es la capital de {question.name}</h2>
             <br />
             {question.options.map((element, index) => {
