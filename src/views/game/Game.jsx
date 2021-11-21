@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loadAllCountriesByRegion } from "../../core/action/Actions";
 import { Col, Row } from "antd";
+import ProfileComponent from "./components/ProfileComponent";
 
 const Game = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,9 @@ const Game = () => {
   return (
     <Fragment>
       <Row>
-        <Col span={8}></Col>
+        <Col span={8}>
+          <ProfileComponent />
+        </Col>
         <Col span={8}>
           <QuestionComponent />
         </Col>

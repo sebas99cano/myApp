@@ -43,7 +43,7 @@ const QuestionComponent = () => {
   const validateQuest = (isCorrect) => {
     if (isCorrect) {
       setResponse({ correct: true, incorrect: false });
-      dispatch(playerResponse(5));
+      dispatch(playerResponse(2 * (100 - seconds)));
     } else {
       setResponse({ correct: true, incorrect: true });
       dispatch(playerResponse(0));
