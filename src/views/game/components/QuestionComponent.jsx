@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Form } from "antd";
+import { Form, Progress } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { playerResponse } from "../../../core/action/Actions";
 
@@ -21,15 +21,15 @@ const QuestionComponent = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (seconds < 60) {
+      if (seconds < 100) {
         setSeconds((seconds) => seconds + 1);
-      } else if (seconds === 60) {
+      } else if (seconds === 100) {
         setSeconds(0);
         clearInfo();
       } else {
         setSeconds((seconds) => seconds - 1);
       }
-    }, 1000);
+    }, 250);
     return () => {
       clearInterval(interval);
     };
@@ -48,7 +48,7 @@ const QuestionComponent = () => {
       setResponse({ correct: true, incorrect: true });
       dispatch(playerResponse(0));
     }
-    setSeconds(62);
+    setSeconds(108);
   };
 
   const newIntent = () => {
@@ -80,24 +80,32 @@ const QuestionComponent = () => {
     <Fragment>
       <h1 className={"question-title"}>COUNTRY QUIZ</h1>
       <Form className={"question-container"} shape={"round"}>
-        <h2
-          className={
-            response.incorrect
-              ? "color-red"
-              : response.correct
-              ? "color-green"
-              : "color-purple"
-          }
-        >
-          {60 - seconds > 0
-            ? "Segundos restantes:" + (60 - seconds)
-            : response.incorrect
-            ? "Incorrecto :C "
-            : response.correct
-            ? "Correcto :)"
-            : "Responde para sumar puntos"}
+        <h2>
+          ¿ Which is the capital of <br />
+          {question.name} ?
         </h2>
-        <h2>Cual es la capital de {question.name}</h2>
+        <Progress
+          percent={
+            response.incorrect ? 0 : response.correct ? 100 : 100 - seconds
+          }
+          success={false}
+          status={
+            response.incorrect
+              ? "exception"
+              : response.correct
+              ? "success"
+              : "active"
+          }
+          type="line"
+          showInfo={false}
+          strokeColor={{
+            "0%": "red",
+            "50%": "#ffae00",
+            "100%": "#288128",
+          }}
+          strokeWidth={15}
+        />
+        <br />
         <br />
         {question.options.map((element, index) => {
           return (
