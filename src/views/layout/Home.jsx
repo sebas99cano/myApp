@@ -1,4 +1,8 @@
-import { UserOutlined } from "@ant-design/icons";
+import {
+  ContactsOutlined,
+  RightCircleOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { Button, Col, Row } from "antd";
 import { Fragment } from "react";
 import { useNavigate } from "react-router";
@@ -11,8 +15,10 @@ const Home = () => {
       <Row className="container-home-buttons">
         <Col span={8}>
           <Button className="home-button home-login-button">
-            <UserOutlined /> <br />
-            Login
+            <span>
+              <UserOutlined /> <br />
+              Login
+            </span>
           </Button>
         </Col>
         <Col span={8}>
@@ -22,14 +28,18 @@ const Home = () => {
               navigate("/game");
             }}
           >
-            <UserOutlined /> <br />
-            Play Anonimo
+            <span>
+              <RightCircleOutlined /> <br />
+              Play Anonimo
+            </span>
           </Button>
         </Col>
         <Col span={8}>
           <Button className="home-button home-contact-button">
-            <UserOutlined /> <br />
-            Contact me
+            <span>
+              <ContactsOutlined /> <br />
+              Contact me
+            </span>
           </Button>
         </Col>
       </Row>
