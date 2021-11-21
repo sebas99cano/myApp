@@ -23,6 +23,8 @@ const QuestionComponent = () => {
     const interval = setInterval(() => {
       if (seconds < 100) {
         setSeconds((seconds) => seconds + 1);
+      } else if (seconds === 100 && !response.correct && !response.incorrect) {
+        validateQuest(false);
       } else if (seconds === 100) {
         setSeconds(0);
         clearInfo();
