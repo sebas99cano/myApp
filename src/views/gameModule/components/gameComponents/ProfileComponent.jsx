@@ -1,14 +1,15 @@
 import { Fragment } from "react";
-import { useSelector } from "react-redux";
 import { Form } from "antd";
 import {
   DribbbleOutlined,
   TrophyOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { useProfileComponent } from "../../hooks/gameComponents/useProfileComponent";
 
 const ProfileComponent = () => {
-  const data = useSelector((state) => state.GameReducer);
+  
+  const { data } = useProfileComponent();
 
   return (
     <Fragment>

@@ -1,23 +1,24 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Form, Progress } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useQuestionComponent } from "../../hooks/gameComponents/useQuestionComponent";
 import { playerResponse } from "../../../../core/action/Actions";
 
 const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
-  const [question, setQuestion] = useState({ name: "", options: [] });
-  const [response, setResponse] = useState({
-    correct: false,
-    incorrect: false,
-  });
   const [seconds, setSeconds] = useState(0);
 
-  const data = useSelector((state) => state.GameReducer);
-  const dispatch = useDispatch();
+  const { question, response, clearInfo, setResponse, dispatch } =
+    useQuestionComponent(numberIntents, setNumberIntents, seconds, setSeconds);
 
-  useEffect(() => {
-    newIntent();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data.countries]);
+  const validateQuest = (isCorrect) => {
+    if (isCorrect) {
+      setResponse({ correct: true, incorrect: false });
+      dispatch(playerResponse(2 * (100 - seconds)));
+    } else {
+      setResponse({ correct: true, incorrect: true });
+      dispatch(playerResponse(0));
+    }
+    setSeconds(108);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,49 +51,14 @@ const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
     }
   };
 
-  const validateQuest = (isCorrect) => {
-    if (isCorrect) {
-      setResponse({ correct: true, incorrect: false });
-      dispatch(playerResponse(2 * (100 - seconds)));
-    } else {
-      setResponse({ correct: true, incorrect: true });
-      dispatch(playerResponse(0));
-    }
-    setSeconds(108);
-  };
-
-  const newIntent = () => {
-    data.countries.sort(() => Math.random() - Math.random()).find(() => true);
-    const random = parseInt((Math.random() * 3).toFixed(0));
-    const optionsArray = [];
-    let name = "";
-    data.countries.map((element, index) => {
-      if (index < 4) {
-        if (index === random) {
-          name = element.name;
-          optionsArray.push({ ...element, isCorrect: true });
-        } else {
-          optionsArray.push({ ...element, isCorrect: false });
-        }
-      }
-      return 0;
-    });
-    setQuestion({ ...question, options: optionsArray, name: name });
-  };
-
-  const clearInfo = () => {
-    setQuestion({ name: "", options: [] });
-    setResponse({ correct: false, incorrect: false });
-    newIntent();
-  };
-
   return (
     <Fragment>
       <h1 className={"question-title"}>COUNTRY QUIZ</h1>
       <Form className={"question-container"} shape={"round"}>
         <h1>{numberIntents} of 10</h1>
         <h2>
-          ¿ Which is the capital of <br />
+          ¿ Which is the capital of
+          <br />
           {question.name} ?
         </h2>
         <Progress

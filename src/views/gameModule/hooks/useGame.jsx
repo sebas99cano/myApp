@@ -1,12 +1,9 @@
-import { Fragment, useEffect, useState } from "react";
-import QuestionComponent from "./gameComponents/QuestionComponent";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loadAllCountriesByRegion } from "../../../core/action/Actions";
-import { Col, Row } from "antd";
-import ProfileComponent from "./gameComponents/ProfileComponent";
 
-const Game = () => {
+export const useGame = () => {
   const [numberIntents, setNumberIntents] = useState(1);
   const dispatch = useDispatch();
 
@@ -31,21 +28,8 @@ const Game = () => {
       });
   }, [dispatch]);
 
-  return (
-    <Fragment>
-      <Row>
-        <Col span={8}>
-          <ProfileComponent />
-        </Col>
-        <Col span={8}>
-          <QuestionComponent
-            numberIntents={numberIntents}
-            setNumberIntents={setNumberIntents}
-          />
-        </Col>
-      </Row>
-    </Fragment>
-  );
+  return {
+    numberIntents,
+    setNumberIntents,
+  };
 };
-
-export default Game;

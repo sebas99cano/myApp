@@ -5,10 +5,10 @@ const initialState = {
 
 const GameReducer = (state = initialState, action) => {
     switch (action.type) {
-        case("LOAD_ALL_COUNTRIES_BY_REGION"):
-            return ({...state, countries: action.payload})
-        case("PLAYER_RESPONSE"):
-            return ({...state, points: (state.points + action.payload)})
+        case ("LOAD_ALL_COUNTRIES_BY_REGION"):
+            return ({ ...state, countries: action.payload })
+        case ("PLAYER_RESPONSE"):
+            return ({ ...state, points: (state.points + action.payload) })
         default:
             return state;
     }

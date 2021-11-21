@@ -1,4 +1,4 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
 import UserReducer from "./UserReducer";
 import GameReducer from "./GameReducer";
 
