@@ -82,7 +82,8 @@ const QuestionComponent = ({ numberIntents, setNumberIntents }) => {
   };
 
   const showConfirm = () => {
-    confirm({
+    confirm({ 
+      width:"500px",
       className: "confirmation-class",
       title: <h1> The game is over !! </h1>,
       content: <h2>Do you want to play again?</h2>,
